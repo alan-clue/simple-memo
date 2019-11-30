@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="ja">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="ja">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8) ]><!-->
+<html lang="ja-JP">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- page information -->
+    <title>シンプルノート</title>
+    <meta name="description" content="">
+    <meta name="keywords" content=",">
+
+    <!--[if IE]>
+	<script type="text/javascript" src="js/html5.js"></script>
+	<![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/materialize.css" >
+    <link rel="stylesheet" href="css/monokai-sublime.css" >
+    <!-- <link rel="stylesheet" href="css/monokai.css" > -->
+    <link rel="stylesheet" href="css/common.css" >
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="./favicon.ico" />
+    <link rel="icon" type="image/vnd.microsoft.icon" href="./favicon.ico">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/ico" />
+
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="js/IE9.js"></script>
+    <script type="text/javascript"　src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+<div class="wrapper" id="note">
+    <div class="fixed-action-btn fixed-action-btn01">
+        <a class="btn-floating btn-large red">
+            <i class="large material-icons">menu</i>
+        </a>
+        <ul>
+            <li><a class="btn-floating waves-effect waves-light light-blue" @click="addMemo"><i class="material-icons">add</i></a></li>
+            <!-- file_upload -->
+            <!-- assignment_returned -->
+            <!-- cloud_download -->
+            <li><a class="btn-floating orange darken-2" @click="dataDownload" id="download" href="#" download="test.txt"><i class="material-icons">file_download</i></a></li>
+        </ul>
+    </div>
+    <div class="fixed-action-btn fixed-action-btn02" style="right: 100px;">
+        <a class="btn-floating btn-large green">
+            <i class="large material-icons">{{viewMode}}</i>
+        </a>
+        <ul>
+            <li><a class="btn-floating grey" @click="changeMode('edit')"><i class="material-icons">edit</i></a></li>
+            <li><a class="btn-floating grey" @click="changeMode('compare')"><i class="material-icons">compare</i></a></li>
+            <li><a class="btn-floating grey" @click="changeMode('remove_red_eye')"><i class="material-icons">remove_red_eye</i></a></li>
+        </ul>
+    </div>
+    <div class="nav orange z-depth-1">
+        <ul class="tabs tabs-transparent">
+            <li v-for="(memo,index) in memos" class="tab" :class="{active: selected == index}" @click="selectMemo(index)">
+                <a :class="{active: selected == index}">{{memo.title}}</a>
+                <a class="btn-floating btn-small halfway-fab waves-effect waves-light grey modal-trigger" href="#modal1"><i class="material-icons">delete</i></a>
+            </li>
+
+        </ul>
+    </div>
+    <template v-if="selected != null && memos[selected]">
+        <div class="title">
+            <input type="text" v-model="memos[selected].title">
+        </div>
+        <div class="contents" :class="viewMode">
+            <div class="contents__edit">
+                <textarea v-model="memos[selected].body"></textarea>
+            </div>
+            <div class="contents__view">
+                <article v-html="compiledMarkdown"></article>
+            </div>
+        </div>
+    </template>
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>削除</h4>
+            <p>本当に削除しますか？</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-red btn-flat">キャンセル</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" @click="deleteMemo(selected)">削除</a>
+        </div>
+    </div>
+<!--//wrapper --></div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/marked.js"></script>
+<script src="js/highlight.pack.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/common.js"></script>
+</body>
+</html>

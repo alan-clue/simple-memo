@@ -1,0 +1,165 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  height: 100vh;
+  
+}
+.nav {
+  height: 48px;
+  flex-basis: 48px;
+  overflow: hidden;
+  min-height: 48px;
+}
+
+.wrapper .title input {
+  padding: 0 16px;
+  box-sizing: border-box;
+  border-color: #ddd;
+  margin-bottom: 0;
+}
+.contents {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.contents__edit,
+.contents__view {
+  width: 50%;
+  
+  transition: width .3s;
+}
+.contents__edit {
+  background-color: #f8f8f8;
+  
+}
+.contents textarea {
+  padding: 10px;
+  border: none;
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  flex-grow: 1;
+  outline: none;
+  resize: none;
+  line-height: 160%;
+  overflow: inherit;
+}
+.contents__view {
+  /* height: 100%; */
+  
+}
+.contents__view article {
+  height: 100%;
+  overflow: auto;
+  padding: 10px;
+}
+
+.contents__view h1,.contents__view h2,.contents__view h3,
+.contents__view h4,.contents__view h5,.contents__view h6 {
+  font-weight: bold;
+  width: 100%;
+}
+.contents__view h1 {
+  font-size: 2em;
+}
+.contents__view h2 {
+  font-size: 1.8em;
+  border-bottom: 1px solid #ccc;
+  padding: 0 0 10px 0;
+}
+.contents__view h3 {
+  font-size: 1.6em;
+   
+}
+.contents__view h4 {
+  font-size: 1.4em;
+}
+.contents__view h5 {
+  font-size: 1.3em;
+}
+.contents__view h6 {
+  font-size: 1.2em;
+}
+.contents__view ul {
+  padding-left: 1em;
+}
+.contents__view ul li {
+  list-style-position: inside;
+  list-style-type: disc;
+  text-indent: -0.5em;
+}
+.contents__view ul li ul {
+  margin: 0.5em 0;
+}
+.contents__view ul li p {
+  display: inline-block;
+  margin: 0;
+}
+
+.contents__view ul li ul li {
+  list-style-type: circle;
+}
+.contents__view ul li ul li ul li {
+  list-style-type: square;
+}
+.contents.edit .contents__edit {
+  width: 100%;
+  
+}
+.contents.edit .contents__view {
+  width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.contents.remove_red_eye .contents__edit {
+  width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.contents.remove_red_eye .contents__view {
+  width: 100%;
+  
+}
+.tabs {
+  height: 64px;
+}
+.tabs .tab {
+  position: relative;
+  max-width: 150px;
+}
+.tabs .tab a {
+  padding: 0 12px;
+  cursor: pointer;
+}
+.tabs .tab.active{
+  background-color: rgba(0,0,0,0.1);
+}
+
+.tabs .tab.active:hover .btn-small {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+.tabs .tab .btn-small {
+  width: inherit;
+  padding: 0;
+  position: absolute;
+  top: 6px;
+  right: -16.2px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .3s
+}
+.tabs .tab .btn-small:hover {
+  background-color: #ccc;
+}
+.tabs .tab .btn-floating.btn-small.halfway-fab {
+  width: 32.4px;
+  height: 32.4px;
+  margin: 0;
+}
